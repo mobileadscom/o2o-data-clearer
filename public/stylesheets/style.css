@@ -1,0 +1,133 @@
+body {
+	margin: 0px;
+  text-align: center;
+  font-family: Arial;
+  background-color: #f8f8f8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.shadow-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.shadow-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-3 {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-4 {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.shadow-5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.loader {
+  border: 4px solid #D8EBF9;
+  margin: auto;
+  border-radius: 50%;
+  border-top: 4px solid #5699D2;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+button.primary, button.danger {
+  margin: 10px;
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  border-radius: 2px;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  font-size: 16px;
+  outline: none;
+  position: relative;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+button.primary {
+  background-color: #4285F4;
+}
+
+button.danger {
+  background-color: #DF1317;
+}
+
+button.primary:hover, button.danger:hover {
+  cursor: pointer;
+  text-shadow: 0 0px 8px white;
+}
+
+.mini-input {
+  position: relative;
+  margin: 30px auto;
+}
+
+.mini-input input{
+  outline: none;
+  padding: 15px 20px;
+  border-radius: 2px;
+  width: 85%;
+  font-size: 16px;
+  border: 1px solid #666;
+  transition: all 0.3s;
+}
+
+.mini-input input:focus {
+  border: 1px solid #66afe9;
+  box-shadow: inset 0px 0px 2px 1px #4285F4, 0px 0px 8px rgba(102,175,233,.6);
+}
+
+.mini-input input:focus::placeholder {
+  color: #4285F4;
+}
+
+.mini-input input:focus:-ms-input-placeholder {
+  color: #4285F4;
+}
+
+.mini-input input:focus::-ms-input-placeholder {
+  color: #4285F4;
+}
+
+.section {
+  margin: 35px auto; 
+  width:90%; 
+  max-width: 400px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.section-title {
+  font-weight: 600;
+  margin: 15px;
+  color: #666;
+  font-size:20px;
+}
+
+.form-errors {
+  color: red;
+}

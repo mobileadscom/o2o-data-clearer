@@ -1,0 +1,33 @@
+button.mini-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0px;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  border-radius: 10%;
+}
+
+
+button.mini-button.clicked::after {
+  animation: anim-effect-boris 0.3s forwards;
+}
+
+@keyframes anim-effect-boris {
+  0% {
+    width: 0px;
+    opacity: 0;
+  }
+  50% {
+    width: 100%;
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+    width: 0px;
+  }
+}
