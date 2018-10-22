@@ -6,13 +6,13 @@
   <meta charset="utf-8">
 </head>
 <body>
-	<div id="logInFormWrapper" class="section" style="display: none;">
+	<div id="logInFormWrapper" class="section">
 		<div class="section-title">LOG IN</div>
 		<div>
 			<form id="logInForm">
 				<div class="form-errors" id="logInFormErrors"></div>
 				<div class="mini-input">
-					<input type="email" placeholder="Email" id="email" required />
+					<input type="text" placeholder="Email" id="email" required />
 				</div>
 				<div class="mini-input">
 					<input type="password" placeholder="Password" id="password" required />
@@ -23,11 +23,12 @@
 		</div>
 		
 	</div>
-	<div id="clearDataWrapper" class="section">
-		<div class="section-title">CLICK THE BUTTON BELOW TO RESET ALL DATA</div>
+	<div id="clearDataWrapper" class="section" style="display: none;">
+		<div class="section-title">CLICK THE BUTTON BELOW TO CLEAR ALL DATA</div>
 		<div id="clearResult" style="margin: 20px; color: red;">
 		</div>
 		<button class="danger mini-button" id="clearDataBtn" style="width: 85%; padding: 10px; margin-top: 0px;">CLEAR DATA</button>
+		<div class="loader" id="clearLoader"></div>
 	</div>
   
 </body>

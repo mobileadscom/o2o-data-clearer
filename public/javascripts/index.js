@@ -28,6 +28,8 @@ var app = {
 				axios.post(`https://api.mobileads.com/auth?email=${email}&password=${password}`).then((response) => {
 					if (response.data.token) {
 						app.data.token = response.data.token;
+						document.getElementById('clearDataWrapper').style.display = 'block';
+						document.getElementById('logInFormWrapper').style.display = 'none';
 					}
 					document.getElementById('logInLoader').style.display = 'none';
 				}).catch((error) => {
@@ -57,7 +59,11 @@ var app = {
 		},
 		resetCoupons() {
 			return new Promise((resolve, reject) => {
-				axios.post('http://api.mobileads.com/mgd/upd?col=mtRainierCoupons&qobj={"group":"A"}&uobj={"redeemed":false,"owner":""}').then((response) => {
+				axios({
+					method: 'get',
+					url: 'https://api.mobileads.com/coupons/mtRainier/init_coupons',
+					headers: {'Authorization': `Bearer ${app.data.token}` }
+				}).then((response) => {
 					resolve(response);
 				}).catch((error) => {
 					reject(error);
@@ -65,21 +71,12 @@ var app = {
 			})
 			
 		},
-		resetUsers() {
-			return new Promise((resolve, reject) => {
-				axios.delete('http://api.mobileads.com/mgd/dlt?col=mtRainierUsers').then((response) => {
-					resolve(response);
-				}).catch((error) => {
-					reject(error);
-				});
-			});
-		},
-		getUsers() {
+		deleteUsers() {
 			return new Promise((resolve, reject) => {
 				axios({
-					method: 'get',
-					url: 'https://api.mobileads.com/mgd/qs?col=mtRainierUsers',
-					headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsdmluQG1vYmlsZWFkcy5jb20iLCJpYXQiOjE1NDAwMjMzODEsImV4cCI6MTU0MDAyNjk4MX0.40N7l-ccTp7KSImfS3TReM7VhkvaGumIFIByHxNW1IY' }
+					method: 'delete',
+					url: 'https://api.mobileads.com/mgd/dlt?col=mtRainierUsers',
+					headers: {'Authorization': `Bearer ${app.data.token}` }
 				}).then((response) => {
 					resolve(response);
 				}).catch((error) => {
@@ -88,16 +85,24 @@ var app = {
 			});
 		},
 		clearData() {
-			this.getUsers().then((r) => {
+			document.getElementById('clearDataBtn').style.display = 'none';
+			document.getElementById('clearLoader').style.display = 'block';
+			this.resetCoupons().then((r) => {
 				console.log(r);
+				this.deleteUsers().then((res) => {
+					console.log(res);
+					document.getElementById('clearDataBtn').style.display = 'inline-block';
+					document.getElementById('clearLoader').style.display = 'none';
+					alert('DATA CLEARED SUCCCESSFULLY');
+				}).catch((err) => {
+					console.error(err);
+				})
 			}).catch((e) => {
-				console.log(e.response);
-			})
-			/*this.resetUsers().then((r) => {
-				console.log(r);
-			}).catch((e) => {
-				console.log(e.response);
-			})*/
+				console.error(e);
+				document.getElementById('clearDataBtn').style.display = 'inline-block';
+				document.getElementById('clearLoader').style.display = 'none';
+				alert('FAIL TO CLEAR DATA');
+			});
 		}
 	}
 }
